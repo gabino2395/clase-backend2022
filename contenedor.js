@@ -44,9 +44,12 @@ class Contenedor {
 
     async getAll() {
         try {
-            let dataArchivo = await fs.promises.readFile(this.ruta, 'utf-8')
-            let dataArchivoParse = JSON.parse(dataArchivo)
-            dataArchivoParse.length ? console.log(dataArchivoParse) : console.log('no hay producto')
+            // let dataArchivo = await fs.promises.writeFile(this.ruta, 'utf-8')
+            let dataArchivo = await fs.promises.readFile (this.ruta, 'utf-8')
+
+            //   let dataArchivoParse = JSON.parse(dataArchivo)
+             let dataArchivoParse = JSON.parse(JSON.stringify(dataArchivo))
+           return dataArchivoParse.length ? dataArchivoParse : console.log('no hay producto')
 
 
         } catch (err) {

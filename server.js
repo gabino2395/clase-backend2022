@@ -11,10 +11,14 @@ app.get('/', (req, res) => {
 app.get('/productos',  async (req, res) => {
     const listaProductos = await contenedor.getAll()
     res.send(listaProductos)
+    // console.log(listaProductos)
 })
 
-app.get('/productoRandom', (req, res) => {
-    res.end('hola maestro')
+
+app.get('/productoRandom',  async (req, res) => {
+    const listaProductos=await contenedor.getAll()
+    const productoRandom = listaProductos[Math.floor(Math.random() * listaProductos.length)]
+    res.end(productoRandom)
 })
 
 
