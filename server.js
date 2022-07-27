@@ -11,23 +11,27 @@ app.get('/', (req, res) => {
 app.get('/productos',  async (req, res) => {
     const listaProductos = await contenedor.getAll()
     res.send(listaProductos)
-    // console.log(listaProductos)
+     console.log(listaProductos)
 })
 
 
 app.get('/productoRandom',  async (req, res) => {
     const listaProductos=await contenedor.getAll()
     const productoRandom = listaProductos[Math.floor(Math.random() * listaProductos.length)]
-    res.end(productoRandom)
+    res.send(productoRandom)
+    console.log(productoRandom)
 })
 
 
 
 
 
-const port = 8082
+const port = 8080
+
 
 const server = app.listen(port, () => {
     console.log(`listening on :${server.address().port}`)
+    console.log(`listening on :${server.address().port}`)
+
 })
 server.on('error', (e) => { console.log(e) })

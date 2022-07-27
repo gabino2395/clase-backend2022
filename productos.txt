@@ -6,7 +6,7 @@
     "id":1
     },
     {
-    "title":"hats"
+    "title":"hats",
     "price":110,
     "description":"purple hat",
     "id":2
