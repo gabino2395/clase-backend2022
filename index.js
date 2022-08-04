@@ -1,4 +1,4 @@
-const Contenedor = require("./contenedor");
+const Contenedor = require("./desafios/contenedor");
  
 // const contenedor= new Contenedor('./prueba.txt')
 // contenedor.save({nombre:'azules 1',precio:200,categoria:'calzados'})
