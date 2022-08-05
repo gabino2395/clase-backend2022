@@ -31,6 +31,7 @@ class Contenedor {
             let dataArchivoParse = JSON.parse(dataArchivo)
             let producto = dataArchivoParse.find(prodcuto => prodcuto.id === id)
             if (producto) {
+                return producto
                 console.log(producto)
             } else {
                 console.log('no se encontro el producto')
