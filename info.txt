@@ -1,0 +1,1 @@
+debemos hacer una api utilizando de base la misma del desafio anterir,incorporando un archivo html con un formulario (con las plantillas), este formulario lo debemos ver en la ruta raiz(./),configurar un ruta POST que sea(/productos ) para que pueda recibir los datos del body del formulario.
