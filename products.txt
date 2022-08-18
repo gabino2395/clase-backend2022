@@ -1,3 +1,9 @@
 [
-    
+  {
+    "title": "hats",
+    "price": 110,
+    "thumbnail": "url de foto",
+    "id": 2
+  },
+  
 ]

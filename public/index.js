@@ -1,9 +1,10 @@
 
 
 const server =io().connect()
-const render = (productos) => {
+const render =   (productos) => {
+    
     let listado = document.querySelector('#listado')
-    let html = productos.map(prod => {
+    let html =  productos.map(prod => {
         return `<li>
             <strong>Nombre: ${prod.nombre}</strong>
             <em>Precio: ${prod.precio}</em>
@@ -48,8 +49,9 @@ const addUser = (e) => {
     return false
 }
 
-server.on('mensaje-productos', mensajeProducto => {
-    render(mensajeProducto.productos) })
+server.on('mensaje-productos', mensaje=> {
+    console.log(mensaje.productos)
+    render(mensaje.productos) })
 
 // server.on('mensaje-productos', mensaje => {
 //     render(mensaje.productos) })

@@ -2,37 +2,31 @@ const express = require('express')
 const app = express()
 const { Server: ServerHttp } = require('http')
 const { Server: ServerIo } = require('socket.io')
-const ProductMethod = require('./Product.Method')
+
+
 const httpServer = new ServerHttp(app)
 const io = new ServerIo(httpServer)
+
+
+const ProductMethod = require('./Product.Method')
 const productsUsers = new ProductMethod('./products.txt')
 const messageUsers = new ProductMethod('./messages.txt')
+
 app.use(express.static('public'))
+
 app.get('/', (req, res) => {
     res.sendFile('index.html', { root: __dirname })
 })
+
+
 io.on('connection', async (socket) => {
-    const comentarios = await messageUsers.getAll()
+    const productos = await productsUsers.getAll()
 
-    // const mensajeUsuario = {
-    //     mensaje: 'todo ok',
-    //     usuarios
-    // }
-    const productos= await productsUsers.getAll()
-    const mensajeProducto = {
-        mensaje: 'ok',
-        productos
-    }
-    socket.emit('mensaje-productos', mensajeProducto)
-    // socket.emit('mensaje-productos', listaProductos)
+    socket.emit('mensaje-productos', { productos })
 
-
-    // socket.emit('mensaje-usuario', mensajeUsuario)
-    socket.emit('mensaje-usuario', comentarios)
-
-    /* 
     socket.on('producto-nuevo', (producto, cb) => {
         productos.push(producto)
+        productsUsers.save(producto)
         const mensaje = {
             mensaje: 'productos insertado',
             productos
@@ -41,19 +35,34 @@ io.on('connection', async (socket) => {
         io.sockets.emit('mensaje-productos', mensaje)
         cb(id)
     })
-    
-    */    
-    socket.on('user-nuevo', (usuario, callback) => {
-   
+
+
+
+
+    const usuarios = await messageUsers.getAll()
+    socket.emit('mensaje-usuario', { usuarios })
+
+    socket.on('user-nuevo', (usuario, cb) => {
+
         usuarios.push(usuario)
+        messageUsers.save(usuario)
         const mensaje = {
             mensaje: 'usuario archivado',
             usuarios
         }
-   
+        const id = new Date().getTime()
+
         io.sockets.emit('mensaje-usuario', mensaje)
+        cb(id)
+
     })
-     
+
+
+
+
+
+
+
 })
-const port = 3500
+const port = 3600
 httpServer.listen(port, () => console.log(`Example app listening on port ${port}!`))
