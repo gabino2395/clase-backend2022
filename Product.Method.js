@@ -1,7 +1,8 @@
 const fs = require('fs')
+// const ProductMethod = require('./ProductMethod1.JS')
 
 
-class ProductMethod {
+class ProductMethod{
     constructor(ruta) {
         this.ruta = ruta
     }
