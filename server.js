@@ -9,8 +9,9 @@ const io = new ServerIo(httpServer)
 
 
 const ProductMethod = require('./Product.Method')
+const mensajeUser= new ProductMethod('./mensajes.txt')
 const productsUsers = new ProductMethod('./products.txt')
-const messageUsers = new ProductMethod('./messages.txt')
+const messageUsers = new ProductMethod('./mess-ages.txt')
 
 app.use(express.static('public'))
 
@@ -21,8 +22,11 @@ app.get('/', (req, res) => {
 
 io.on('connection', async (socket) => {
     const productos = await productsUsers.getAll()
+    const usuarios = await mensajeUser.getAll()
 
     socket.emit('mensaje-productos', { productos })
+    socket.emit('mensaje-usuario', { usuarios })
+
 
     socket.on('producto-nuevo', (producto, cb) => {
         productos.push(producto)
@@ -39,13 +43,11 @@ io.on('connection', async (socket) => {
 
 
 
-    const usuarios = await messageUsers.getAll()
-    socket.emit('mensaje-usuario', { usuarios })
 
-    socket.on('user-nuevo', (usuario, cb) => {
+    socket.on('user-nuevo', (usuario) => {
 
         usuarios.push(usuario)
-        messageUsers.save(usuario)
+        mensajeUser.save(usuario)
         const mensaje = {
             mensaje: 'usuario archivado',
             usuarios
@@ -53,7 +55,6 @@ io.on('connection', async (socket) => {
         const id = new Date().getTime()
 
         io.sockets.emit('mensaje-usuario', mensaje)
-        cb(id)
 
     })
 

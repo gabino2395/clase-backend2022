@@ -2,7 +2,7 @@ const fs = require('fs')
 // const ProductMethod = require('./ProductMethod1.JS')
 
 
-class ProductMethod{
+class ProductMethod {
     constructor(ruta) {
         this.ruta = ruta
     }
@@ -45,12 +45,17 @@ class ProductMethod{
 
     async getAll() {
         try {
+
+
             // let dataArchivo = await fs.promises.writeFile(this.ruta, 'utf-8')
             let dataArchivo = await fs.promises.readFile(this.ruta, 'utf-8')
 
             let dataArchivoParse = JSON.parse(dataArchivo)
-            //  let dataArchivoParse = JSON.parse(JSON.stringify(dataArchivo))
-            return dataArchivoParse.length ? dataArchivoParse : console.log('no hay producto')
+            // let dataArchivoParse = JSON.parse(JSON.stringify(dataArchivo))
+            return dataArchivoParse.length
+                ? dataArchivoParse
+                :
+                console.log('no hay producto')
 
 
         } catch (err) {
@@ -73,7 +78,7 @@ class ProductMethod{
             if (objIndex !== -1) {//existe {
                 dataArchivo[objIndex] = obj
                 await fs.promises.writeFile(this.ruta, JSON.stringify(dataArchivo, null, 2))
-                return {msg:'actualizado el producto'}
+                return { msg: 'actualizado el producto' }
             } else {
                 // no existe
                 return { error: 'no existe el producto' }
