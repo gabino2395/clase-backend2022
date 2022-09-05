@@ -1,8 +1,7 @@
 const fs = require('fs')
-// const ProductMethod = require('./ProductMethod1.JS')
 
 
-class ProductMethod {
+class Contenedor {
     constructor(ruta) {
         this.ruta = ruta
     }
@@ -45,17 +44,12 @@ class ProductMethod {
 
     async getAll() {
         try {
-
-
             // let dataArchivo = await fs.promises.writeFile(this.ruta, 'utf-8')
             let dataArchivo = await fs.promises.readFile(this.ruta, 'utf-8')
 
             let dataArchivoParse = JSON.parse(dataArchivo)
-            // let dataArchivoParse = JSON.parse(JSON.stringify(dataArchivo))
-            return dataArchivoParse.length
-                ? dataArchivoParse
-                :
-                console.log('no hay producto')
+            //  let dataArchivoParse = JSON.parse(JSON.stringify(dataArchivo))
+            return dataArchivoParse.length ? dataArchivoParse : console.log('no hay producto')
 
 
         } catch (err) {
@@ -118,6 +112,4 @@ class ProductMethod {
     }
 
 }
-
-
-module.exports = ProductMethod
+module.exports = Contenedor

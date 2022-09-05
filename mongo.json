@@ -1,0 +1,56 @@
+use ecommerce
+
+db.products.insert({ "title": "Producto1", "price": 100.00, "thumbnail": "imagen1" })
+db.products.insert({ "title": "Producto2", "price": 500.00, "thumbnail": "imagen2" })
+db.products.insert({ "title": "Producto0", "price": 1000.00, "thumbnail": "imagen3" })
+db.products.insert({ "title": "Producto4", "price": 1500.00, "thumbnail": "imagen4" })
+db.products.insert({ "title": "Producto5", "price": 2000.00, "thumbnail": "imagen5" })
+db.products.insert({ "title": "Producto6", "price": 2500.00, "thumbnail": "imagen6" })
+db.products.insert({ "title": "Producto7", "price": 3000.00, "thumbnail": "imagen7" })
+db.products.insert({ "title": "Producto8", "price": 3500.00, "thumbnail": "imagen8" })
+db.products.insert({ "title": "Producto9", "price": 4000.00, "thumbnail": "imagen9" })
+db.products.insert({ "title": "Producto10", "price": 4500.00, "thumbnail": "imagen10" })
+///
+db.products.insertMany([{ "title": "Producto0", "price": 1000.00, "thumbnail": "imagen3" },
+{ "title": "Producto4", "price": 1500.00, "thumbnail": "imagen4" },
+{ "title": "Producto5", "price": 2000.00, "thumbnail": "imagen5" },
+{ "title": "Producto6", "price": 2500.00, "thumbnail": "imagen6" },
+{ "title": "Producto7", "price": 3000.00, "thumbnail": "imagen7" },
+{ "title": "Producto8", "price": 3500.00, "thumbnail": "imagen8" },
+{ "title": "Producto9", "price": 4000.00, "thumbnail": "imagen9" },
+{ "title": "Producto10", "price": 4500.00, "thumbnail": "imagen10" }])
+
+db.messages.insertMany([
+{ "email": "usuario01@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 01" },
+{ "email": "usuario02@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 02" },
+{ "email": "usuario03@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 03" },
+{ "email": "usuario04@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 04" },
+{ "email": "usuario05@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 05" },
+{ "email": "usuario06@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 06" },
+{ "email": "usuario07@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 07" },
+{ "email": "usuario08@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 08" },
+{ "email": "usuario09@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 09" },
+{ "email": "usuario10@gmail.com", "timestamp": ISODate(), "message": "mensaje de prueba 10" },
+]
+)
+
+db.products.find()
+db.messages.find()
+
+db.products.find().count()
+db.messages.find().count()
+
+db.products.insert({ "title": "Nuevo Producto", "price": 5000.00, "thumbnail": "https://cdn4.iconfinder.com/data/icons/for-your-interface-free-samples/128/Label-256.png" })
+
+db.products.find({ price:{ '$lt': 1000 } })
+db.products.find({ $and: [{ price: {'$gte' : 1000} }, { price:{'$lte' : 3000} }] } )
+db.products.find({ price:{ '$gt' : 3000 } })
+db.products.find().sort({price:1}).skip(2).limit(1)
+
+db.products.updateMany({}, {$set: {"stock": 100}})
+db.products.updateMany({price: {$gt: 4000 }}, {$set: {"stock": 0}})
+
+db.products.deleteMany({price: {$lt: 1000 }})
+
+use admin
+db.createUser({user: "pepe",pwd: "asd456",roles: [{ role: "read", db: "ecommerce" }]})

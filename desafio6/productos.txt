@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "title": "hats",
+    "price": "100",
+    "thumbnail": "url-producto"
+  },
+  {
+    "title": "remeera",
+    "price": "220",
+    "thumbnail": "1",
+    "id": 2
+  },
+  {
+    "title": "a",
+    "price": "220",
+    "thumbnail": "https://www.dexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwc4ec213b/products/RE_H11299/RE_H11299_1.JPG",
+    "id": 3
+  },
+  {
+    "id": 4,
+    "isAdmin": true
+  },
+  {
+    "title": "",
+    "id": 5,
+    "codigo": "",
+    "stock": "",
+    "price": "",
+    "thumbnail": ""
+  },
+  {
+    "title": "",
+    "id": 6,
+    "codigo": "",
+    "stock": "",
+    "price": "",
+    "thumbnail": ""
+  },
+  {
+    "title": "",
+    "id": 7,
+    "codigo": "",
+    "stock": "",
+    "price": "",
+    "thumbnail": ""
+  },
+  {
+    "title": "",
+    "id": 8,
+    "codigo": "",
+    "stock": "",
+    "price": "",
+    "thumbnail": ""
+  },
+  {
+    "isAdmin": true,
+    "id": 9
+  }
+]
